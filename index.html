@@ -1,46 +1,15 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mente en Acción - Inicio</title>
-    <link rel="stylesheet" href="../css/estilo.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <header class="header-main">
-        <div class="container">
-            <a href="index.html" class="logo">Mente en Acción</a>
-            <nav class="nav-main">
-                <ul>
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="juegos.html">Juegos</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <main>
-        <section id="inicio" class="page-section">
-            <div class="container">
-                <h2>¡Bienvenido a Mente en Acción!</h2>
-                <p>¿Buscas entretenimiento que también te haga más inteligente? Has llegado al lugar correcto. Aquí encontrarás juegos divertidos diseñados para ejercitar tu memoria, concentración y agilidad mental. ¡Prepárate para poner tu mente a prueba!</p>
-                <a href="juegos.html" class="btn btn-secundary">¡Jugar Ahora!</a>
-            </div>
-        </section>
-        <section id="sobre-mi" class="page-section" style="background-color: white;">
-            <div class="container">
-                <h2>Sobre el Creador</h2>
-                <p>¡Hola! Soy Kevin Santiago Gonzalez Cerquera, estudiante del grado 10°. Creé "Mente en Acción" como un proyecto de software para combinar mi interés por la tecnología con la creación de herramientas útiles y divertidas. Mi objetivo es ofrecer un espacio donde el aprendizaje y el entretenimiento vayan de la mano.</p>
-            </div>
-        </section>
-    </main>
-    <footer class="footer-main">
-        <div class="container">
-            <p>&copy; 2025 Mente en Acción - Kevin Santiago Gonzalez Cerquera. Todos los derechos reservados.</p>
-        </div>
-    </footer>
-</body>
-</html>
+document.addEventListener('DOMContentLoaded', () => {
+    const gameBoard = document.getElementById('game-board'); const movesDisplay = document.getElementById('moves'); const restartBtn = document.getElementById('restart-btn');
+    const gameIcons = ['📜', '🏺', '🗿', '⚔️', '👑', '🏛️']; const gameCards = [...gameIcons, ...gameIcons];
+    let moves = 0; let hasFlippedCard = false; let lockBoard = false; let firstCard, secondCard;
+    function shuffle(array) { for (let i = array.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [array[i], array[j]] = [array[j], array[i]]; } }
+    function createBoard() { shuffle(gameCards); gameCards.forEach(icon => { const card = document.createElement('div'); card.classList.add('memory-card'); card.dataset.icon = icon; card.innerHTML = `<div class="front-face">${icon}</div><div class="back-face">?</div>`; card.addEventListener('click', flipCard); gameBoard.appendChild(card); }); }
+    function flipCard() { if (lockBoard || this === firstCard) return; this.classList.add('flip'); moves++; movesDisplay.textContent = moves; if (!hasFlippedCard) { hasFlippedCard = true; firstCard = this; return; } secondCard = this; checkForMatch(); }
+    function checkForMatch() { const isMatch = firstCard.dataset.icon === secondCard.dataset.icon; isMatch ? disableCards() : unflipCards(); }
+    function disableCards() { firstCard.removeEventListener('click', flipCard); secondCard.removeEventListener('click', flipCard); resetBoard(); checkWin(); }
+    function unflipCards() { lockBoard = true; setTimeout(() => { firstCard.classList.remove('flip'); secondCard.classList.remove('flip'); resetBoard(); }, 1000); }
+    function resetBoard() { [hasFlippedCard, lockBoard] = [false, false]; [firstCard, secondCard] = [null, null]; }
+    function checkWin() { if (document.querySelectorAll('.memory-card.flip').length === gameCards.length) { setTimeout(() => alert(`¡Felicidades! Ganaste en ${moves} movimientos.`), 500); } }
+    function restartGame() { gameBoard.innerHTML = ''; moves = 0; movesDisplay.textContent = moves; resetBoard(); createBoard(); }
+    restartBtn.addEventListener('click', restartGame); createBoard();
+});
