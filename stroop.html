@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Efecto Stroop - Mente en Acción</title>
+    <link rel="stylesheet" href="../css/estilo.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        #word-display { font-size: 5rem; font-weight: bold; margin: 20px 0; }
+        .color-button { padding: 15px 30px; margin: 10px; font-size: 1.2rem; border: none; border-radius: 5px; cursor: pointer; color: white; }
+        #score { font-size: 1.5rem; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <header class="header-main"><div class="container"><a href="index.html" class="logo">Mente en Acción</a><nav class="nav-main"><ul><li><a href="index.html">Inicio</a></li><li><a href="juegos.html">Juegos</a></li><li><a href="contacto.html">Contacto</a></li></ul></nav></div></header>
+    <main>
+        <section id="stroop-game" class="page-section">
+            <div class="container">
+                <h2>Efecto Stroop</h2><p>Presiona el botón del COLOR de la tinta, no de la palabra.</p>
+                <div id="word-display">Cargando...</div>
+                <div id="color-buttons">
+                    <button class="color-button" style="background-color: red;" data-color="rojo">Rojo</button>
+                    <button class="color-button" style="background-color: blue;" data-color="azul">Azul</button>
+                    <button class="color-button" style="background-color: green;" data-color="verde">Verde</button>
+                    <button class="color-button" style="background-color: orange;" data-color="naranja">Naranja</button>
+                </div>
+                <div id="score">Aciertos: 0 | Errores: 0</div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer-main"><div class="container"><p>&copy; 2025 Mente en Acción - Kevin Santiago Gonzalez Cerquera. Todos los derechos reservados.</p></div></footer>
+    <script src="../js/stroop.js"></script>
+</body>
+</html>
