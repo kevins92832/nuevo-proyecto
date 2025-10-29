@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memoria de Secuencia - Mente en Acción</title>
+    <link rel="stylesheet" href="../css/estilo.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        #simon-board { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; width: 300px; height: 300px; gap: 10px; margin: 20px auto; }
+        .simon-button { border: none; border-radius: 10px; cursor: pointer; transition: opacity 0.2s; }
+        .simon-button.active { opacity: 1; }
+        .simon-button.inactive { opacity: 0.5; }
+        #red { background-color: #e74c3c; } #green { background-color: #2ecc71; } #yellow { background-color: #f1c40f; } #blue { background-color: #3498db; }
+        #info { text-align: center; font-size: 1.2rem; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <header class="header-main"><div class="container"><a href="index.html" class="logo">Mente en Acción</a><nav class="nav-main"><ul><li><a href="index.html">Inicio</a></li><li><a href="juegos.html">Juegos</a></li><li><a href="contacto.html">Contacto</a></li></ul></nav></div></header>
+    <main>
+        <section id="secuencia-game" class="page-section">
+            <div class="container">
+                <h2>Memoria de Secuencia</h2><p>Observa la secuencia y luego repítela.</p>
+                <div id="info">Nivel: 1</div>
+                <div id="simon-board">
+                    <div id="red" class="simon-button inactive" data-color="red"></div>
+                    <div id="green" class="simon-button inactive" data-color="green"></div>
+                    <div id="yellow" class="simon-button inactive" data-color="yellow"></div>
+                    <div id="blue" class="simon-button inactive" data-color="blue"></div>
+                </div>
+                <button id="start-btn" class="btn">Empezar Juego</button>
+            </div>
+        </section>
+    </main>
+    <footer class="footer-main"><div class="container"><p>&copy; 2025 Mente en Acción - Kevin Santiago Gonzalez Cerquera. Todos los derechos reservados.</p></div></footer>
+    <script src="../js/secuencia.js"></script>
+</body>
+</html>
